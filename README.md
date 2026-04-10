@@ -154,7 +154,7 @@ barba.init({
 
 ## 🔗 Live Demo
 
-🚀 <Add Vercel Link Here>
+🚀 <https://barba-js-overlay-transition-02.vercel.app/>
 
 ---
 
