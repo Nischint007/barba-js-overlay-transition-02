@@ -10,11 +10,11 @@ This project is part of my **Beginner → Advanced Barba.js Series**, where each
 
 Instead of animating the page container directly, we use a **full-screen overlay (`#transition`)** to control the transition.
 
-💡 This is closer to how real-world websites handle transitions:
+💡 This approach:
 
-* Content stays untouched
-* Animation runs on a separate layer
-* More flexibility for future effects
+* Keeps page content untouched
+* Runs animation on a separate layer
+* Makes transitions more scalable and flexible
 
 ---
 
@@ -22,20 +22,18 @@ Instead of animating the page container directly, we use a **full-screen overlay
 
 ✨ Custom overlay-based transition
 ✨ Reusable GSAP animation functions
-✨ Cleaner separation between content & animation
+✨ Separation of animation layer from content
 ✨ More scalable transition structure
 
 ---
 
 ## ⚙️ How the Transition Works
 
-Simple flow:
-
 1. Overlay slides up → covers current page
 2. Page switches in the background
 3. Overlay moves out → reveals next page
 
-👉 This creates a smooth **“screen wipe” effect**
+👉 Creates a smooth **screen wipe transition**
 
 ---
 
@@ -45,7 +43,7 @@ Simple flow:
 gsap.set("#transition", { y: "100%" });
 ```
 
-📍 Keeps the overlay hidden below the screen initially
+📍 Keeps overlay hidden below the viewport initially
 
 ---
 
@@ -63,8 +61,8 @@ function overlayIn() {
 }
 ```
 
-✔️ Moves overlay upward
 ✔️ Covers the entire screen
+✔️ Acts as transition layer
 
 ---
 
@@ -84,7 +82,7 @@ function overlayOut() {
 ```
 
 ✔️ Reveals next page
-✔️ Resets overlay for next transition
+✔️ Resets overlay for reuse
 
 ---
 
@@ -108,11 +106,11 @@ barba.init({
 });
 ```
 
-### 🧠 What’s happening here?
+### 🧠 Flow
 
-* **leave()** → Overlay covers the screen
+* **leave()** → Overlay covers screen
 * **enter()** → Overlay reveals next page
-* **sync: true** → Keeps transition smooth and connected
+* **sync: true** → Smooth transition timing
 
 ---
 
@@ -132,40 +130,40 @@ barba.init({
 
 ---
 
-## 🎨 Important CSS
+## 🎨 Transition CSS (Used in Project)
 
 ```css
-#transition {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  z-index: 999;
+#transition{
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background-color: #111;
+    pointer-events: none;
+    touch-action: none;
+    transform: translateY(100%);
 }
 ```
 
-📍 Ensures overlay:
+📍 Ensures:
 
-* Covers full screen
-* Stays above all content
-* Works smoothly during animation
+* Full-screen coverage
+* No interaction blocking issues
+* Smooth GSAP-driven movement
 
 ---
 
-## 🔗 Links
+## 🔗 Live Demo
 
-🔴 Live Demo: <Add Vercel Link Here>
-💻 Source Code: <Add GitHub Link Here>
+🚀 <Add Vercel Link Here>
 
 ---
 
 ## 🧠 Key Takeaways
 
-* Overlay transitions are more flexible than container-based ones
-* Separating animation from content improves scalability
-* Reusable GSAP functions make your code cleaner
-* This pattern is used in real-world modern websites
+* Overlay transitions are more scalable than container animations
+* Decoupling animation from content improves flexibility
+* GSAP functions can be reused across transitions
+* This pattern aligns with modern production websites
 
 ---
 
